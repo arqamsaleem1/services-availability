@@ -1,0 +1,21 @@
+/**
+ * All of the CSS for your public-facing functionality should be
+ * included in this file.
+ */
+
+.saf-wrapper {
+    width: 100%;
+    max-width: 100% !important;
+}
+.saf-fields-container {
+    display: flex;
+    width: 100%;
+}
+.saf-fields-container .saf-field-group {
+    flex: 1;
+    width: 15%;
+    padding: 15px 20px 15px 0px;
+}
+.saf-date .ui-datepicker-inline.ui-datepicker {
+    display: none !important;
+}
