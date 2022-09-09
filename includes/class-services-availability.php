@@ -197,12 +197,13 @@ class Services_Availability {
   		
 		ob_start();
 	  
-	  	load_template( plugin_dir_path( dirname( __FILE__ ) ) . 'public/partials/services-availablity-form-public-display.php' );
+	  	load_template( plugin_dir_path( dirname( __FILE__ ) ) . 'public/partials/services-availablity-form-public-display.php', false );
 	 	$ret = ob_get_contents();
 	  	ob_end_clean();
-	  
+
+
 	  	// Ad code returned
-	  	return $ret; 
+	  	return $ret;
 		
   	}
 

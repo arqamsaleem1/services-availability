@@ -1,4 +1,4 @@
-jQuery(document).ready(function($) {
+jQuery( document ).ready( function( $ ) {
 	
 	$( '.saf-select select' ).select2();
 	jQuery( ".saf-date" ).datepicker();
@@ -6,29 +6,33 @@ jQuery(document).ready(function($) {
 	
 	$( 'select[name="saf-service-type"]' ).change(function(){
 		
-		const serviceType = $( 'select[name="saf-service-type"]' ).val();
+		const serviceType = $( this );
 
-		if ( serviceType == 2 ) {
+		if ( serviceType.val() == 2 ) {
 
-			jQuery.get('https://dev-liquidmobile-api.azurewebsites.net/api/Facilities/Clinics', function(data){
+			jQuery.get('https://dev-liquidmobile-api.azurewebsites.net/api/Facilities/Clinics', function( data ){
 
-				const selectOptions = data.map((i) => {
+				const selectOptions = data.map( ( i ) => {
+					
 					let d = {};
+					
 					d.id = i.facilityId;
 					d.text = i.facilityName;
 
 					return d;
 				});
 				const emptyObj = { 
+					
 					id : '', 
 					text : 'Select Facility', 
 					disabled: true,
 					selected: true,
 				};
 
-				selectOptions.push(emptyObj);
-				console.log(selectOptions);
-				$('select[name="saf-facility"]').select2({
+				selectOptions.push( emptyObj );
+				//console.log(selectOptions);
+
+				serviceType.closest( 'form' ).find( 'select[name="saf-facility"]' ).select2({
 					data: selectOptions,
 				});
 			})
@@ -39,15 +43,15 @@ jQuery(document).ready(function($) {
 
 	$('select[name="saf-facility"]').change(function(){
 		
-		const serviceType = $( 'select[name="saf-service-type"]' ).val();
-		const facility = $( 'select[name="saf-facility"]' ).val();
+		const serviceType = $( this ).closest( 'form' ).find( 'select[name="saf-service-type"]' );
+		const facility = $( this );
 
-		if ( serviceType == 2 ) {
+		if ( serviceType.val() == 2 ) {
 
-			jQuery.get(`https://dev-liquidmobile-api.azurewebsites.net/api/Facilities/${facility}/OperationTypes/${serviceType}/Products`, function(data){
+			jQuery.get(`https://dev-liquidmobile-api.azurewebsites.net/api/Facilities/${facility.val()}/OperationTypes/${serviceType.val()}/Products`, function(data){
 
 				//console.log(data);
-				const selectFacilityOptions = data.map((i) => {
+				const selectFacilityOptions = data.map( ( i ) => {
 					let d = {};
 					d.id = i.productId;
 					d.text = i.productName;
@@ -56,16 +60,17 @@ jQuery(document).ready(function($) {
 					return d;
 				});
 
-				const groupByKey = (list, key) => list.reduce((hash, obj) => ({...hash, [obj[key]]:( hash[obj[key]] || [] ).concat(obj)}), {});
+				const groupByKey = ( list, key ) => list.reduce( ( hash, obj ) => ( { ...hash, [ obj[ key ] ] : ( hash[ obj[ key ] ] || [] ).concat( obj ) } ), {});
 
-				const groupedSelectFacilityOptions = groupByKey(selectFacilityOptions, 'cat');
-				const allCats = Object.keys(groupedSelectFacilityOptions);
+				const groupedSelectFacilityOptions = groupByKey( selectFacilityOptions, 'cat' );
+				const allCats = Object.keys( groupedSelectFacilityOptions );
 
 				//console.log(allCats);
-				const facilityOptions = allCats.map((cat) => {
+				const facilityOptions = allCats.map( ( cat ) => {
+					
 					let groupedObject = {};
 					groupedObject.text = cat;
-					groupedObject.children = groupedSelectFacilityOptions[cat];
+					groupedObject.children = groupedSelectFacilityOptions[ cat ];
 
 					return groupedObject;
 				});
@@ -77,8 +82,8 @@ jQuery(document).ready(function($) {
 					selected: true,
 				};
 
-				facilityOptions.push(emptyObj);
-				$('select[name="saf-services"]').select2({
+				facilityOptions.push( emptyObj );
+				facility.closest( 'form' ).find( 'select[name="saf-services"]' ).select2( {
 					data: facilityOptions
 				})
 			})
@@ -87,19 +92,17 @@ jQuery(document).ready(function($) {
 
 	});
 
-	$('select[name="saf-services"]').change(function(){
+	$( 'select[name="saf-services"]' ).change( function(){
 		
-		const serviceType = $( 'select[name="saf-service-type"]' ).val();
-		const facility = $( 'select[name="saf-facility"]' ).val();
-		const service = $( 'select[name="saf-services"]' ).val();
+		const serviceType 	= $( this ).closest( 'form' ).find( 'select[name="saf-service-type"]' );
+		const facility 		= $( this ).closest( 'form' ).find( 'select[name="saf-facility"]' );
+		const services 		= $( this );
 
-		if ( serviceType == 2 ) {
+		if ( serviceType.val() == 2 ) {
 
-			//jQuery.get(`https://dev-liquidmobile-api.azurewebsites.net//api/Facilities/${facility}/OperationTypes/${serviceType}/Products`, function(data){
-			jQuery.get(`https://dev-liquidmobile-api.azurewebsites.net/api/Facilities/${facility}/OperationTypes/${serviceType}/Products/${service}/AddOns`, function(data){
+			jQuery.get( `https://dev-liquidmobile-api.azurewebsites.net/api/Facilities/${facility.val()}/OperationTypes/${serviceType.val()}/Products/${services.val()}/AddOns`, function( data ){
 
-				console.log(data);
-				const selectServicesOptions = data.map((i) => {
+				const selectServicesOptions = data.map( ( i ) => {
 					
 					let serviceObject = {};
 					
@@ -108,20 +111,10 @@ jQuery(document).ready(function($) {
 
 					return serviceObject;
 				});
-
-				console.log(selectServicesOptions);
-				/* const emptyObj = { 
-					id : '', 
-					text : 'Select Boosts', 
-					disabled: true,
-					selected: true,
-				};
-
-				selectServicesOptions.push(emptyObj); */
 				
-				$('select[name="saf-boosts[]"]').select2({
+				services.closest( 'form' ).find( 'select[name="saf-boosts[]"]' ).select2({
 					data: selectServicesOptions
-				})
+				});
 			})
 		}
 
