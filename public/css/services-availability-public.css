@@ -19,3 +19,69 @@
 .saf-date .ui-datepicker-inline.ui-datepicker {
     display: none !important;
 }
+.saf-error .select2-selection {
+    border-color: #ff4d4f;
+}
+.saf-error > input {
+    border-color: #ff4d4f;
+}
+.saf-notification-notice-with-icon {
+    box-sizing: border-box;
+    padding: 0;
+    color: rgba(0,0,0,.85);
+    font-size: 14px;
+    font-variant: tabular-nums;
+    line-height: 1.5715;
+    list-style: none;
+    -webkit-font-feature-settings: "tnum","tnum";
+    font-feature-settings: "tnum","tnum";
+    position: fixed;
+    right: 0px;
+    top: 50vh;
+    z-index: 1010;
+    margin: 0 24px 0 0;
+}
+.saf-notification-notice-with-icon {
+    width: 384px;
+    max-width: calc(100vw - 48px);
+    margin-bottom: 16px;
+    margin-left: auto;
+    padding: 16px 24px;
+    overflow: hidden;
+    line-height: 1.5715;
+    word-wrap: break-word;
+    background: #fff;
+    border-radius: 2px;
+    box-shadow: 0 3px 6px -4px rgb(0 0 0 / 12%), 0 6px 16px 0 rgb(0 0 0 / 8%), 0 9px 28px 8px rgb(0 0 0 / 5%);
+}
+
+.saficon {
+    display: inline-block;
+    color: inherit;
+    font-style: normal;
+    line-height: 0;
+    text-align: center;
+    text-transform: none;
+    vertical-align: -0.125em;
+    text-rendering: optimizelegibility;
+    -webkit-font-smoothing: safialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.saf-notification-notice-icon {
+    position: absolute;
+    margin-left: 4px;
+    font-size: 24px;
+    line-height: 24px;
+}
+.saficon.saf-notification-notice-icon-error {
+    color: #ff4d4f;
+}
+.saf-notification-notice-with-icon .saf-notification-notice-message {
+    margin-bottom: 4px;
+    margin-left: 48px;
+    font-size: 16px;
+}
+.saf-notification-notice-with-icon .saf-notification-notice-description {
+    margin-left: 48px;
+    font-size: 14px;
+}

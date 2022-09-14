@@ -76,6 +76,7 @@ class Services_Availability_Public {
 		wp_enqueue_style( $this->plugin_name . '-select2', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css', array(), $this->version, 'all' );
 		//wp_enqueue_style( 'jquery-ui-datepicker');
 		wp_enqueue_style( $this->plugin_name . 'jquery-ui-datepicker', plugin_dir_url( __FILE__ ) . 'css/jquery-ui-datepicker.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name . '-map', plugin_dir_url( __FILE__ ) . 'css/map.css', array(), $this->version, 'all' );
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/services-availability-public.css', array(), $this->version, 'all' );
 
 	}
@@ -101,7 +102,9 @@ class Services_Availability_Public {
 
 		wp_enqueue_script( $this->plugin_name . '-select2', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js', array( 'jquery' ), $this->version, false );
 		wp_enqueue_script( 'jquery-ui-datepicker');
+		wp_enqueue_script( $this->plugin_name . '-map', plugin_dir_url( __FILE__ ) . 'js/map-script.js', array( 'jquery' ), $this->version, false );
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/services-availability-public.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name . '-google-map-api', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyA0eoYnn4K0ShoUxhjYKPThufrjtRckOnA&callback=initMap&libraries=places&v=weekly', array(  ), $this->version, true );
 
 	}
 

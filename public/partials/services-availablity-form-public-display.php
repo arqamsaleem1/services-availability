@@ -14,6 +14,10 @@
 ?>
 
 <!-- This file should primarily consist of HTML with a little bit of PHP. -->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+<!-- <link rel="stylesheet" type="text/css" href="<?php //echo get_stylesheet_directory_uri() . "/css/style.css"; ?>" />
+<script type="module" src="<?php //echo get_stylesheet_directory_uri() . "/js/map-script.js"; ?>"></script> -->
 
 <div class="saf-wrapper">
     <div class="saf-content-div">
@@ -31,12 +35,20 @@
                         </select>
                     </div>
                 </div>
-                <div class="saf-field-group saf-facility-group">
+                <div class="saf-field-group saf-facility-group saf-clinic-facility">
                     <div class="label">
                         <label for="saf-facility">Facility</label>
                     </div>
                     <div class="saf-select saf-facility-select" >
                         <select style="width: 100%;" name="saf-facility" data-placeholder="Select facility"></select>
+                    </div>
+                </div>
+                <div class="saf-field-group saf-location-group saf-mobile-location">
+                    <div class="label">
+                        <label for="saf-location">Location</label>
+                    </div>
+                    <div class="saf-select saf-location-input" >
+                        <input class="pac-input" name="saf-mobile-location" type="text" placeholder="Enter a location" />
                     </div>
                 </div>
                 <div class="saf-field-group saf-services-group">
