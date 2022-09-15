@@ -72,7 +72,7 @@
                         <label for="saf-date">Select date</label>
                     </div>
                     <div class="saf-date saf-date-field">
-                        <input type="text" name="saf-date" class="saf-date">
+                        <input type="text" name="saf-date" class="saf-date" placeholder="Enter a date" >
                     </div>
                 </div>
                 <div class="saf-field-group saf-time-group">
