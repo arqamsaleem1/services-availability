@@ -28,7 +28,7 @@
                         <label for="saf-service-type">Service Type</label>
                     </div>
                     <div class="saf-select saf-service-type-select">
-                        <select style="width: 100%;" name="saf-service-type" data-placeholder="Select type">
+                        <select style="width: 100%;" name="saf-service-type" data-placeholder="Select type" >
                             <option value="" disabled selected>Select your option</option>
                             <option value="1">Mobile</option>
                             <option value="2">Clinic</option>

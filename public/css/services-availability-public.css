@@ -12,9 +12,8 @@
     width: 100%;
 }
 .saf-fields-container .saf-field-group {
-    flex: 1;
-    width: 15%;
-    padding: 5px 20px 8px 0px;
+    width: 15.6%;
+    padding: 5px 0px 8px;
 }
 .saf-date .ui-datepicker-inline.ui-datepicker {
     display: none !important;
@@ -93,6 +92,8 @@
     align-items: center;
     border-radius: 14px;
     background: #fff;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 .saf-field-group {
     padding: 0;
@@ -103,7 +104,7 @@
     list-style: none;
     border: 2px solid #dbdfea;
     border-radius: 14px;
-    margin: 8px 10px;
+    margin: 8px 5px;
 }
 
 .saf-select span.select2-selection {
@@ -114,7 +115,7 @@
 .saf-fields-container label {
     font-size: 15px!important;
     font-weight: 700!important;
-    padding-left: 10px;
+    padding-left: 15px;
     padding-top: 8px;
     color: #000!important;
     max-width: 100%;
@@ -128,6 +129,7 @@
 }
 .saf-field-group .select2-selection__rendered {
     font-size: 18px;
+    padding-left: 15px !important;
 }
 .saf-field-group input {
     border: none !important;
@@ -139,6 +141,11 @@
 .saf-boosts-select .select2-selection--multiple {
     border: none !important;
     min-height: 5px !important;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    right: 10px;
 }
 .saf-wrapper .saf-submit-btn-row {
     text-align: center;
@@ -177,15 +184,16 @@
     text-decoration: none;
 }
 .select2-container--open .select2-dropdown--below {
-    top: 40px;
-    width: 192px !important;
+    top: 10px;
+    /* width: 220px !important; */
     border-radius: 14px;
     box-shadow: 0 3px 6px -4px rgb(0 0 0 / 12%), 0 6px 16px 0 rgb(0 0 0 / 8%), 0 9px 28px 8px rgb(0 0 0 / 5%);
     border: none;
+    /* left: -12px; */
 }
 .select2-container--open .select2-dropdown--above {
     top: -12px;
-    width: 192px !important;
+   /*  width: 192px !important; */
     border-radius: 14px;
     box-shadow: 0 3px 6px -4px rgb(0 0 0 / 12%), 0 6px 16px 0 rgb(0 0 0 / 8%), 0 9px 28px 8px rgb(0 0 0 / 5%);
     border: none;
@@ -202,6 +210,8 @@
     border-radius: 14px;
     padding: 20px;
     flex-direction: column;
+    text-align: center;
+    font-size: 12px;
 }
 .ant-empty-img-default-ellipse {
     fill: #f5f5f5;
@@ -225,4 +235,34 @@
 .select2-container--default .select2-results__option--selected {
     background-color: #fff;
     font-weight: 700;
+}
+.saf-field-group ul.select2-selection__rendered {
+    padding: 0 !important;
+    margin: 0;
+}
+li.select2-selection__choice {
+    padding: 0px !important;
+    margin: 0;
+    background: transparent !important;
+    border: none !important;
+    font-size: 14px;
+}
+
+li.select2-selection__choice > button.select2-selection__choice__remove {
+    display: none;
+}
+@media screen and ( max-width: 991.98px ){
+    .saf-fields-container .saf-field-group {
+        width: 30%;
+    }
+}
+@media screen and ( max-width: 767.98px ){
+    .saf-fields-container .saf-field-group {
+        width: 47%;
+    }
+}
+@media screen and ( max-width: 490.98px ){
+    .saf-fields-container .saf-field-group {
+        width: 90%;
+    }
 }

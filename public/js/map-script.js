@@ -2,7 +2,7 @@
 
 function initMap() {
     
-    let inputs = document.querySelectorAll("input[name='saf-mobile-location']");
+    let inputs = document.querySelectorAll( "input[name='saf-mobile-location']" );
     let autocompletes = [];
 
     let options = {
@@ -13,18 +13,16 @@ function initMap() {
         
         let autocomplete = new google.maps.places.Autocomplete( inputs[index], options );
         
-        autocomplete.addListener("place_changed", function () {
-            
-            //infowindow.close();
+        autocomplete.addListener( "place_changed", function () {
     
             let place = autocomplete.getPlace();
-            console.log(place);
-            console.log(place.geometry.location.lat());
-            console.log(place.geometry.location.lng());
+            /* console.log( place );
+            console.log( place.geometry.location.lat() );
+            console.log( place.geometry.location.lng() ); */
 
             const latitude = place.geometry.location.lat();
             const longitude = place.geometry.location.lng();
-            jQuery.get(`https://dev-liquidmobile-api.azurewebsites.net/api/Facilities/InZone?operationTypeId=1&latitude=${latitude}&longitude=${longitude}`, function( data ){
+            jQuery.get( `https://dev-liquidmobile-api.azurewebsites.net/api/Facilities/InZone?operationTypeId=1&latitude=${latitude}&longitude=${longitude}`, function( data ){
 
                 if ( data == undefined ) {
 
@@ -38,12 +36,13 @@ function initMap() {
 
                     });
                     
-
-                    console.log(data);
+                    //console.log(data);
                     return false
                 }
-                jQuery(inputs[index]).attr('data-location', JSON.stringify( data ) );
-                console.log(data);
+
+                jQuery( inputs[ index ] ).attr( 'data-location', JSON.stringify( data ) );
+                
+                    //console.log(data);
 
                     jQuery.get(`https://dev-liquidmobile-api.azurewebsites.net/api/Facilities/${data.facilityId}/OperationTypes/1/Products`, function(data){
 
@@ -57,7 +56,7 @@ function initMap() {
                         return d;
                     });
 
-                    const groupByKey = ( list, key ) => list.reduce( ( hash, obj ) => ( { ...hash, [ obj[ key ] ] : ( hash[ obj[ key ] ] || [] ).concat( obj ) } ), {});
+                    const groupByKey = ( list, key ) => list.reduce( ( hash, obj ) => ( { ...hash, [ obj[ key ] ] : ( hash[ obj[ key ] ] || [] ).concat( obj ) } ), {} );
 
                     const groupedSelectFacilityOptions = groupByKey( selectFacilityOptions, 'cat' );
                     const allCats = Object.keys( groupedSelectFacilityOptions );
@@ -92,7 +91,7 @@ function initMap() {
             
         });
 
-        autocompletes.push(autocomplete);
+        autocompletes.push( autocomplete );
     }
     
 }
