@@ -72,7 +72,7 @@
                         <label for="saf-date">Select date</label>
                     </div>
                     <div class="saf-date saf-date-field">
-                        <input type="text" name="saf-date" class="saf-date" placeholder="Enter a date" >
+                        <input type="text" name="saf-date" class="saf-date" placeholder="Enter a date" autocomplete="off" >
                     </div>
                 </div>
                 <div class="saf-field-group saf-time-group">
@@ -82,10 +82,6 @@
                     <div class="saf-select saf-time-select">
                         <select style="width: 100%;" name="saf-time" data-placeholder="Select time">
                             <option disabled selected value="">Select time</option>
-                            <option value="12:00 PM">12:00 PM</option>
-                            <option value="1:00 PM">1:00 PM</option>
-                            <option value="2:00 PM">2:00 PM</option>
-                            <option value="3:00 PM">3:00 PM</option>
                         </select>
                     </div>
                 </div>

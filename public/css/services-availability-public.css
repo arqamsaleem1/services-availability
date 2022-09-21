@@ -122,18 +122,25 @@
     text-transform: uppercase;
 }
 .saf-field-group span.select2-selection__placeholder {
-    font-size: 18px;
+    font-size: 16px;
 }
 .saf-field-group .select2-results li {
     font-size: 16px;
 }
 .saf-field-group .select2-selection__rendered {
-    font-size: 18px;
+    font-size: 16px;
     padding-left: 15px !important;
 }
 .saf-field-group input {
+    font-family: inherit;
+    font-size: 16px;
+    color: #444;
     border: none !important;
-    padding: 5px 8px !important;
+    padding: 5px 14px !important;
+}
+.saf-field-group input::placeholder {
+    font-family: inherit;
+    font-size: 16px !important;
 }
 .saf-field-group input:focus-visible {
     outline: none !important;
@@ -146,6 +153,10 @@
 }
 .select2-container--default .select2-selection--single .select2-selection__arrow {
     right: 10px;
+}
+.saf-select span.select2-selection textarea.select2-search__field {
+    font-family: inherit;
+    font-size: 16px;
 }
 .saf-wrapper .saf-submit-btn-row {
     text-align: center;
@@ -184,16 +195,13 @@
     text-decoration: none;
 }
 .select2-container--open .select2-dropdown--below {
-    top: 10px;
-    /* width: 220px !important; */
+    top: 40px;
     border-radius: 14px;
     box-shadow: 0 3px 6px -4px rgb(0 0 0 / 12%), 0 6px 16px 0 rgb(0 0 0 / 8%), 0 9px 28px 8px rgb(0 0 0 / 5%);
     border: none;
-    /* left: -12px; */
 }
 .select2-container--open .select2-dropdown--above {
     top: -12px;
-   /*  width: 192px !important; */
     border-radius: 14px;
     box-shadow: 0 3px 6px -4px rgb(0 0 0 / 12%), 0 6px 16px 0 rgb(0 0 0 / 8%), 0 9px 28px 8px rgb(0 0 0 / 5%);
     border: none;
@@ -226,7 +234,8 @@
 .ant-empty-img-default-path-3 {
     fill: #f5f5f7;
 }
-.ant-empty-img-default-path-4, .ant-empty-img-default-path-5 {
+.ant-empty-img-default-path-4, 
+.ant-empty-img-default-path-5 {
     fill: #dce0e6;
 }
 .ant-empty-img-default-g {
@@ -251,6 +260,104 @@ li.select2-selection__choice {
 li.select2-selection__choice > button.select2-selection__choice__remove {
     display: none;
 }
+.select2-selection__arrow svg {
+    display: inline-block;
+    vertical-align: middle;
+}
+.datepick-nav, 
+.datepick-ctrl {
+    background-color: #fff;
+    color: rgba(0,0,0,.85);
+}
+.datepick-month-header,
+.datepick-month-header select, 
+.datepick-month-header input {
+    background-color: #fff;
+    color: rgba(0,0,0,.85);
+    font-size: 14px;
+    font-weight: 500;
+    height: auto;
+    padding: 5px 0px;
+}
+.datepick {
+    width: 280px !important;
+    background: #fff;
+    border-radius: 2px;
+    box-shadow: 0 3px 6px -4px rgb(0 0 0 / 12%), 0 6px 16px 0 rgb(0 0 0 / 8%), 0 9px 28px 8px rgb(0 0 0 / 5%);
+    border: none;
+    padding: 10px 0px;
+}
+
+.datepick-month {
+    width: 100%;
+    border: none;
+}
+.datepick-month table {
+    margin: 0rem 0;
+    font-size: 14px;
+    border-color: #f0f0f0;
+}
+.datepick-month th, 
+.datepick-month th a {
+    background-color: #fff;
+    color: #000;
+    border: none;
+    padding: 10px 0px;
+}
+.datepick-cmd {
+    width: 24%;
+}
+.datepick .datepick-cmd {
+    color: rgba(0,0,0,.25);
+}
+table * {
+    border: none !important;
+}
+.datepick .datepick-cmd-current, 
+.datepick .datepick-cmd-today {
+    color: rgba(0,0,0,.85);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+}
+.datepick-cmd-prevJump, 
+.datepick-cmd-nextJump {
+    width: 8%;
+}
+.datepick-cmd-prev, 
+.datepick-cmd-next {
+    text-align: center;
+    width: 10%;
+}
+.datepick-cmd-current, 
+.datepick-cmd-today {
+    float: left;
+    width: 60%;
+    text-align: center;
+}
+.datepick-month td .datepick-other-month,
+.datepick-month td .datepick-weekend,
+.datepick-month a {
+    background-color: #fff;
+}
+.datepick-month td {
+    background-color: #fff;
+    padding: 5px 0px;
+}
+.datepick-ctrl {
+    padding: 15px 0px 0px;
+}
+.datepick-month td .datepick-highlight {
+    background: #f5f5f5;
+}
+.datepick-month td .datepick-selected {
+    background-color: #486baf;
+}
+.datepick-month td .datepick-today {
+    border: 1px solid #486baf;
+    background-color: #fff;
+    border-radius: 2px;
+}
 @media screen and ( max-width: 991.98px ){
     .saf-fields-container .saf-field-group {
         width: 30%;
@@ -259,6 +366,10 @@ li.select2-selection__choice > button.select2-selection__choice__remove {
 @media screen and ( max-width: 767.98px ){
     .saf-fields-container .saf-field-group {
         width: 47%;
+    }
+    .saf-wrapper button.saf-submit-btn {
+        font-size: 16px;
+        width: 65%;
     }
 }
 @media screen and ( max-width: 490.98px ){

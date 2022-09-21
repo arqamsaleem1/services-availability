@@ -14,3 +14,8 @@
 ?>
 
 <!-- This file should primarily consist of HTML with a little bit of PHP. -->
+
+<h1><?php esc_html_e( 'Services Availability settings', 'services-availability' ) ?></h1>
+
+
+<p><?php esc_html_e( 'This shortcode is to show Services Availability form on the frontend. ', 'services-availability' ) ?><code>[services-availablity-form ]</code></p>

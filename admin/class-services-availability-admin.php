@@ -99,5 +99,18 @@ class Services_Availability_Admin {
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/services-availability-admin.js', array( 'jquery' ), $this->version, false );
 
 	}
+	public function built_admin_menu() {
+		add_menu_page( 'Services Availability', 'Services Availability', 'manage_options', 'saf_settings', array( $this, 'setting_page' ));
+	}
+	function setting_page() {
+		if ( isset($_GET['success']) && $_GET['success'] != '' ) {
+			$this->am->showSuccessAlert($_GET['success']);
+		}
+		if ( isset($_GET['error']) && $_GET['error'] != '' ) {
+			$this->am->showErrorAlert($_GET['error']);
+		}
+
+		load_template( plugin_dir_path( dirname( __FILE__ ) ) . 'admin/partials/services-availability-admin-display.php' );
+	}
 
 }
