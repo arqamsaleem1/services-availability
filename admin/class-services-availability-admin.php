@@ -62,7 +62,6 @@ class Services_Availability_Admin {
 	public function enqueue_styles() {
 
 		/**
-		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
 		 * defined in Services_Availability_Loader as all of the hooks are defined
@@ -85,7 +84,6 @@ class Services_Availability_Admin {
 	public function enqueue_scripts() {
 
 		/**
-		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
 		 * defined in Services_Availability_Loader as all of the hooks are defined

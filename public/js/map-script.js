@@ -1,5 +1,5 @@
 "use strict";
-
+$ = jQuery;
 function initMap() {
     
     let inputs = document.querySelectorAll( "input[name='saf-mobile-location']" );
@@ -9,6 +9,24 @@ function initMap() {
         fields: ["formatted_address", "geometry", "name"],
     };
     
+    /* Data Adapter defin - START */
+		$.fn.select2.amd.define( 'select2/data/customAdapter',
+        [ 'select2/data/array', 'select2/utils' ],
+        function ( ArrayAdapter, Utils ) {
+            function CustomDataAdapter ( $element, options ) {
+                CustomDataAdapter.__super__.constructor.call( this, $element, options );
+            }
+            Utils.Extend(CustomDataAdapter, ArrayAdapter);
+            CustomDataAdapter.prototype.updateOptions = function (data) {
+                this.$element.find('option').remove(); // remove all options
+                this.addOptions(this.convertToOptions(data));
+            }        
+            return CustomDataAdapter;
+        }
+    );
+    let customAdapter = $.fn.select2.amd.require('select2/data/customAdapter');		
+    /* Data Adapter defin - END */
+
     for ( let index = 0; index < inputs.length; index++ ) {
         
         let autocomplete = new google.maps.places.Autocomplete( inputs[index], options );
@@ -16,9 +34,6 @@ function initMap() {
         autocomplete.addListener( "place_changed", function () {
     
             let place = autocomplete.getPlace();
-            /* console.log( place );
-            console.log( place.geometry.location.lat() );
-            console.log( place.geometry.location.lng() ); */
 
             const latitude = place.geometry.location.lat();
             const longitude = place.geometry.location.lng();
@@ -36,17 +51,17 @@ function initMap() {
 
                     });
                     
-                    //console.log(data);
                     return false
                 }
 
                 jQuery( inputs[ index ] ).attr( 'data-location', JSON.stringify( data ) );
                 
-                    //console.log(data);
-
                     jQuery.get(`https://dev-liquidmobile-api.azurewebsites.net/api/Facilities/${data.facilityId}/OperationTypes/1/Products`, function(data){
 
-                    //console.log(data);
+                    /**
+                     * Building an array of objects by API Response, to make it ready for select2 dropdown.
+                     *
+                     */
                     const selectFacilityOptions = data.map( ( i ) => {
                         let d = {};
                         d.id = i.productId;
@@ -61,7 +76,6 @@ function initMap() {
                     const groupedSelectFacilityOptions = groupByKey( selectFacilityOptions, 'cat' );
                     const allCats = Object.keys( groupedSelectFacilityOptions );
 
-                    //console.log(allCats);
                     const facilityOptions = allCats.map( ( cat ) => {
                         
                         let groupedObject = {};
@@ -71,6 +85,10 @@ function initMap() {
                         return groupedObject;
                     });
 
+                    /**
+                     * Creating an empty Object as a placeholder.
+                     *
+                     */
                     const emptyObj = { 
                         id : '', 
                         text : 'Select Service', 
@@ -80,11 +98,17 @@ function initMap() {
 
                     facilityOptions.push( emptyObj );
 
-                    console.log(facilityOptions);
-                    console.log(inputs[index]);
-                    jQuery(inputs[index]).closest( 'form' ).find( 'select[name="saf-services"]' ).select2( {
-                        data: facilityOptions
-                    })
+                    /**
+                     * Passing the final data array to select2 to populate the dropdown.
+                     *
+                     */
+                    let sel = jQuery(inputs[index]).closest( 'form' ).find( 'select[name="saf-services"]' ).select2( {
+                        dataAdapter: customAdapter,
+                        data: facilityOptions,
+                        minimumResultsForSearch: -1,
+                    });
+
+                    sel.data('select2').dataAdapter.updateOptions(facilityOptions);
                 });
 
             });

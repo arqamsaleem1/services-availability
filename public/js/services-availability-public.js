@@ -1,4 +1,10 @@
 jQuery( document ).ready( function( $ ) {
+
+
+	/**
+	 * API basic settings
+	 */
+	const apiBaseURL = 'https://dev-liquidmobile-api.azurewebsites.net';
 	
 	/**
 	 * Initialize Select2
@@ -94,8 +100,8 @@ jQuery( document ).ready( function( $ ) {
 			instance.closest( 'form' ).find( '.saf-mobile-location' ).hide();
 			instance.closest( 'form' ).find( '.saf-clinic-facility' ).show();
 
-
-			jQuery.get( 'https://dev-liquidmobile-api.azurewebsites.net/api/Facilities/Clinics', function( data ) {
+			
+			jQuery.get( `${apiBaseURL}/api/Facilities/Clinics`, function( data ) {
 
 				/**
 				 * Building an array of objects by API Response, to make it ready for select2 dropdown.
@@ -171,7 +177,7 @@ jQuery( document ).ready( function( $ ) {
 
 		if ( serviceType.val() == 2 ) {
 
-			jQuery.get( `https://dev-liquidmobile-api.azurewebsites.net/api/Facilities/${facility.val()}/OperationTypes/${serviceType.val()}/Products`, function( data ) {
+			jQuery.get( `${apiBaseURL}/api/Facilities/${facility.val()}/OperationTypes/${serviceType.val()}/Products`, function( data ) {
 
 				/**
 				 * Building an array of objects by API Response, to make it ready for select2 dropdown.
@@ -264,7 +270,7 @@ jQuery( document ).ready( function( $ ) {
 		let customAdapter = $.fn.select2.amd.require('select2/data/customAdapter');		
 		/* Data Adapter defin - END */
 
-		jQuery.get( `https://dev-liquidmobile-api.azurewebsites.net/api/Facilities/${facility}/OperationTypes/${serviceType.val()}/Products/${services.val()}/AddOns`, function( data ) {
+		jQuery.get( `${apiBaseURL}/api/Facilities/${facility}/OperationTypes/${serviceType.val()}/Products/${services.val()}/AddOns`, function( data ) {
 
 			const selectServicesOptions = data.map( ( i ) => {
 				
@@ -300,8 +306,10 @@ jQuery( document ).ready( function( $ ) {
 		const serviceType 	= instance.closest( 'form' ).find( 'select[ name="saf-service-type" ]' );
 		let facility 		= '';
 		let facilityRef = '';
+		let mobileLocation = undefined;
 		if ( serviceType.val() == 1 ) {
 			facilityRef = instance.closest( 'form' ).find( 'input[ name="saf-mobile-location" ]' );
+			mobileLocation = facilityRef.val();
 			
 		}
 		else if ( serviceType.val() == 2 ) {
@@ -366,7 +374,7 @@ jQuery( document ).ready( function( $ ) {
 				facility = facilityRef.val();
 			} 
 			console.log(services.val());
-			const submitURL = `https://purple-sand-066809e10.1.azurestaticapps.net/?operationTypeId=${serviceType.val()}&facilityId=${facility}&productId=${services.val()}&addOns=${boosts.val()}&date=${date.val()}&time=${time.val()}&guests=undefined&facility=${facility}&operationType=${serviceType.val()}&serviceDateUTC=${date.val()}&serviceDate=${date.val()}&lineItems=${boosts.val()}&type=widget`;
+			const submitURL = `https://purple-sand-066809e10.1.azurestaticapps.net/?operationTypeId=${serviceType.val()}&facilityId=${facility}&productId=${services.val()}&addOns=${boosts.val()}&date=${date.val()}&time=${time.val()}&guests=undefined&facility=${facility}&operationType=${serviceType.val()}&serviceaddress=${mobileLocation}&serviceDateUTC=${date.val()}&serviceDate=${date.val()}&lineItems=${boosts.val()}&type=widget`;
 			console.log(encodeURI(submitURL));
 			window.location.replace(encodeURI(submitURL));
 		}
